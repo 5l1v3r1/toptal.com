@@ -1,7 +1,8 @@
 api/alembic/settings/serve.ini
 api/alembic/settings/test.ini
-api/resources/assets
-api/resources/assets
+api/resources/assets/compressed.css
+api/resources/assets/compressed.js
+api/resources/assets/versions.json
 api/resources/stylesheets/all.css
 api/resources/vendor
 api/settings/serve.py
