@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+
+# Flask
+
+DEBUG = False
+PROPAGATE_EXCEPTIONS = False
+
+# Flask-SQLAlchemy
+
+SQLALCHEMY_URL = 'mysql+mysqldb://username:password@hostname/database'
+SQLALCHEMY_ECHO = False

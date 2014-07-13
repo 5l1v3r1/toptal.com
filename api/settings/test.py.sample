@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+
+# Flask
+
+TESTING = True
+
+# Flask-SQLAlchemy
+
+SQLALCHEMY_URL = 'mysql+mysqldb://username:password@hostname/database_'

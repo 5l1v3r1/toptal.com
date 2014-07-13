@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SPA - API</title>
+        {% assets "stylesheets" %}
+            <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css">
+        {% endassets %}
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="page-header">
+                        <h1>Sign Up</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -d 'email=...&amp;password=...&amp;name=...' \
+    -X 'POST' \
+    http://localhost:5000/sign-up</pre>
+<pre class="alert alert-success">200 OK
+{
+    "email": "...",
+    "id": "...",
+    "name": "..."
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -d 'email=&amp;password=&amp;name=' \
+    -X 'POST' \
+    http://localhost:5000/sign-up</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            email
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                        <li>
+                            password
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                        <li>
+                            name
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Sign In</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -d 'email=...&amp;password=...' \
+    -X 'POST' \
+    http://localhost:5000/sign-in</pre>
+<pre class="alert alert-success">200 OK
+{
+    "token": "..." # expires in 24 hours
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -d 'email=&amp;password=' \
+    -X 'POST' \
+    http://localhost:5000/sign-in</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            email
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                        <li>
+                            password
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Profile</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -d 'password=...&amp;name=...' \
+    -X 'POST' \
+    http://localhost:5000/profile</pre>
+<pre class="alert alert-success">200 OK
+{
+    "email": "...",
+    "id": "...",
+    "name": "..."
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -d 'password=&amp;name=' \
+    -X 'POST' \
+    http://localhost:5000/profile</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            password
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                        <li>
+                            name
+                            <ul>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>List Entries</h1>
+                    </div>
+                    <p><strong>Example:</strong></p>
+<pre class="alert alert-success">$ curl \
+    -d 'dates_from=...&amp;dates_to=...&amp;order_by_column=...&amp;order_by_direction=...&amp;offset=...&amp;limit=...' \
+    -H 'Token: ...' \
+    -X 'GET' \
+    http://localhost:5000/entry</pre>
+<pre class="alert alert-success">200 OK
+{
+    "items": [
+        {
+            "date": "...",
+            "distance": "...", # in meters
+            "id": "...",
+            "time": "..."      # in seconds
+        },
+        ...
+        {
+            "date": "...",
+            "distance": "...", # in meters
+            "id": "...",
+            "time": "..."      # in seconds
+        }
+    ],
+    "total": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            dates_from
+                            <ul>
+                                <li>optional</li>
+                                <li>format: YYYY-MM-DD</li>
+                            </ul>
+                        </li>
+                        <li>
+                            dates_to
+                            <ul>
+                                <li>optional</li>
+                                <li>format: YYYY-MM-DD</li>
+                            </ul>
+                        </li>
+                        <li>
+                            order_by_column
+                            <ul>
+                                <li>optional</li>
+                                <li>default: id</li>
+                                <li>choices: id, date, distance, time</li>
+                            </ul>
+                        </li>
+                        <li>
+                            order_by_direction
+                            <ul>
+                                <li>optional</li>
+                                <li>default: desc</li>
+                                <li>choices: asc, desc</li>
+                            </ul>
+                        </li>
+                        <li>
+                            offset
+                            <ul>
+                                <li>optional</li>
+                                <li>
+                                    format: a valid integer (will be coerced)
+                                </li>
+                                <li>default: 0</li>
+                            </ul>
+                        </li>
+                        <li>
+                            limit
+                            <ul>
+                                <li>optional</li>
+                                <li>
+                                    format: a valid integer (will be coerced)
+                                </li>
+                                <li>default: 10</li>
+                                <li>maximum: 50</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Add Entry</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -d 'date=...&amp;distance=...&amp;time=...' \
+    -H 'Token: ...' \
+    -X 'POST' \
+    http://localhost:5000/entry</pre>
+<pre class="alert alert-success">200 OK
+{
+    "date": "...",
+    "distance": "...", # in meters
+    "id": "...",
+    "time": "..."      # in seconds
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -d 'date=&amp;distance=&amp;time=' \
+    -H 'Token: ...' \
+    -X 'POST' \
+    http://localhost:5000/entry</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            date
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: YYYY-MM-DD
+                                    (must be today or older; i.e. you cannot
+                                    add entries in the future)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            distance (in meters)
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid double (will be coerced)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            time (in seconds)
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid double (will be coerced)
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Edit Entry</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -d 'date=...&amp;distance=...&amp;time=...' \
+    -H 'Token: ...' \
+    -X 'PUT' \
+    http://localhost:5000/entry/&lt;id&gt;</pre>
+<pre class="alert alert-success">200 OK
+{
+    "date": "...",
+    "distance": "...", # in meters
+    "id": "...",
+    "time": "..."      # in seconds
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -d 'date=&amp;distance=&amp;time=' \
+    -H 'Token: ...' \
+    -X 'PUT' \
+    http://localhost:5000/entry/&lt;id&gt;</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            date
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: YYYY-MM-DD
+                                    (must be today or older; i.e. you cannot
+                                    add entries in the future)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            distance (in meters)
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid double (will be coerced)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            time (in seconds)
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid double (will be coerced)
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Delete Entry</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -H 'Token: ...' \
+    -X 'DELETE' \
+    http://localhost:5000/entry/&lt;id&gt;</pre>
+<pre class="alert alert-success">200 OK
+{}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -H 'Token: ...' \
+    -X 'DELETE' \
+    http://localhost:5000/entry/</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            id
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid integer (will be coerced)
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Reports</h1>
+                    </div>
+                    <p><strong>Example:</strong></p>
+<pre class="alert alert-success">$ curl \
+    -H 'Token: ...' \
+    -X 'GET' \
+    http://localhost:5000/report?date=...</pre>
+<pre class="alert alert-success">200 OK
+{
+    "average_speed": "...", # in meters per second
+    "total_distance": "..." # in meters
+    "total_time": "...",     # in seconds
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            date
+                            <ul>
+                                <li>optional</li>
+                                <li>
+                                    format: YYYY-MM-DD
+                                    (report will be limited to a period
+                                    between date and date + 7 days)
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        {% assets "javascripts" %}
+            <script src="{{ ASSET_URL }}" type="text/javascript"></script>
+        {% endassets %}
+    </body>
+</html>

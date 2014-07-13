@@ -1,0 +1,40 @@
+[alembic]
+file_template = %%(year)d-%%(month).2d-%%(day)2d %%(hour).2d:%%(minute).2d:%%(second).2d
+revision_environment = false
+script_location = alembic
+sqlalchemy.url = mysql+mysqldb://username:password@hostname/database_
+truncate_slug_length = 255
+
+[formatters]
+keys = generic
+
+[formatter_generic]
+datefmt = %Y-%m-%d %H:%M:%S
+format = %(asctime)s [%(levelname)8s] [%(name)10s] %(message)s
+
+[handlers]
+keys = console
+
+[handler_console]
+args = (sys.stderr, )
+class = StreamHandler
+formatter = generic
+level = NOTSET
+
+[loggers]
+keys = alembic,root,sqlalchemy
+
+[logger_alembic]
+handlers =
+level = ERROR
+qualname = alembic
+
+[logger_root]
+handlers = console
+level = ERROR
+qualname =
+
+[logger_sqlalchemy]
+handlers =
+level = ERROR
+qualname = sqlalchemy.engine

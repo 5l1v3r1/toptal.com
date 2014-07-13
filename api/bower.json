@@ -1,0 +1,8 @@
+{
+    "dependencies": {
+        "bootstrap": "3.2.0"
+    },
+    "devDependencies": {},
+    "name": "span",
+    "version": "1.0.0"
+}
