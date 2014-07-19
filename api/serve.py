@@ -102,6 +102,20 @@ def before_request():
 
 @application.after_request
 def after_request(response):
+    response.headers['Access-Control-Allow-Headers'] = ', '.join([
+        'Content-Type',
+        'Token',
+    ])
+    response.headers['Access-Control-Allow-Methods'] = ', '.join([
+        'DELETE',
+        'GET',
+        'HEAD',
+        'OPTIONS',
+        'POST',
+        'PUT',
+    ])
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Max-Age'] = '86400'
     g.session.close()
     return response
 
