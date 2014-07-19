@@ -42,25 +42,35 @@ class TestCase1(TestCase_):
             })
             self.assertTrue(response.status_code == 200)
             content = loads(response.data)
+            self.assertTrue(content['email'] == self.email)
             self.assertTrue(content['token'] != '')
             self.token = content['token']
 
     def test_1(self):
         with application.test_client() as client:
-            name = '2'
-            response = client.post('/profile', data={
-                'name': name,
-                'password': self.password,
-            }, headers={
+            response = client.get('/dashboard', headers={
                 'Token': self.token,
             })
             self.assertTrue(response.status_code == 200)
             content = loads(response.data)
-            self.assertTrue(content['id'] > 0)
-            self.assertTrue(content['email'] == self.email)
-            self.assertTrue(content['name'] == name)
+            self.assertTrue(content['total_distance'] == 679.00)
+            self.assertTrue(content['total_time'] == 420.00)
+            self.assertTrue(content['average_speed'] == 1.6166666666666667)
 
     def test_2(self):
+        with application.test_client() as client:
+            response = client.get('/dashboard', query_string={
+                'date': date.today() - timedelta(days=6)
+            },headers={
+                'Token': self.token,
+            })
+            self.assertTrue(response.status_code == 200)
+            content = loads(response.data)
+            self.assertTrue(content['total_distance'] == 637.00)
+            self.assertTrue(content['total_time'] == 420.00)
+            self.assertTrue(content['average_speed'] == 1.5166666666666666)
+
+    def test_3(self):
         with application.test_client() as client:
             response = client.get('/entry', headers={
                 'Token': self.token,
@@ -70,8 +80,9 @@ class TestCase1(TestCase_):
             self.assertTrue(content['total'] == 100)
             self.assertTrue(len(content['items']) == 10)
 
+    def test_4(self):
+        with application.test_client() as client:
             today = date.today()
-
             response = client.get('/entry', query_string={
                 'dates_from': today - timedelta(days=6),
                 'dates_to': today,
@@ -83,7 +94,16 @@ class TestCase1(TestCase_):
             self.assertTrue(content['total'] == 7)
             self.assertTrue(len(content['items']) == 7)
 
-    def test_3(self):
+    def test_5(self):
+        with application.test_client() as client:
+            response = client.get('/entry/1', headers={
+                'Token': self.token,
+            })
+            self.assertTrue(response.status_code == 200)
+            content = loads(response.data)
+            self.assertTrue(content['id'] == 1)
+
+    def test_6(self):
         with application.test_client() as client:
             date = '1001-01-01'
             distance = 1.00
@@ -134,16 +154,20 @@ class TestCase1(TestCase_):
             content = loads(response.data)
             self.assertTrue(content.keys() == [])
 
-    def test_4(self):
+    def test_7(self):
         with application.test_client() as client:
-            response = client.get('/report', headers={
+            name = '2'
+            response = client.post('/profile', data={
+                'name': name,
+                'password': self.password,
+            }, headers={
                 'Token': self.token,
             })
             self.assertTrue(response.status_code == 200)
             content = loads(response.data)
-            self.assertTrue(content['total_distance'] == 5050.00)
-            self.assertTrue(content['total_time'] == 6000.00)
-            self.assertTrue(content['average_speed'] == 0.8416666666666667)
+            self.assertTrue(content['id'] > 0)
+            self.assertTrue(content['email'] == self.email)
+            self.assertTrue(content['name'] == name)
 
 
 class TestCase2(TestCase_):
@@ -202,7 +226,7 @@ class TestCase3(TestCase_):
 
     def test_3(self):
         with application.test_client() as client:
-            response = client.post('/profile')
+            response = client.get('/dashboard')
             self.assertTrue(response.status_code == 401)
             self.assertTrue(
                 loads(response.data)['exception'], 'BadSignature'
@@ -218,7 +242,7 @@ class TestCase3(TestCase_):
 
     def test_5(self):
         with application.test_client() as client:
-            response = client.post('/entry')
+            response = client.get('/entry/0')
             self.assertTrue(response.status_code == 401)
             self.assertTrue(
                 loads(response.data)['exception'], 'BadSignature'
@@ -226,7 +250,7 @@ class TestCase3(TestCase_):
 
     def test_6(self):
         with application.test_client() as client:
-            response = client.put('/entry/0')
+            response = client.post('/entry')
             self.assertTrue(response.status_code == 401)
             self.assertTrue(
                 loads(response.data)['exception'], 'BadSignature'
@@ -234,7 +258,7 @@ class TestCase3(TestCase_):
 
     def test_7(self):
         with application.test_client() as client:
-            response = client.delete('/entry/0')
+            response = client.put('/entry/0')
             self.assertTrue(response.status_code == 401)
             self.assertTrue(
                 loads(response.data)['exception'], 'BadSignature'
@@ -242,7 +266,15 @@ class TestCase3(TestCase_):
 
     def test_8(self):
         with application.test_client() as client:
-            response = client.get('/report')
+            response = client.delete('/entry/0')
+            self.assertTrue(response.status_code == 401)
+            self.assertTrue(
+                loads(response.data)['exception'], 'BadSignature'
+            )
+
+    def test_9(self):
+        with application.test_client() as client:
+            response = client.post('/profile')
             self.assertTrue(response.status_code == 401)
             self.assertTrue(
                 loads(response.data)['exception'], 'BadSignature'

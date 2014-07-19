@@ -39,6 +39,7 @@ class user(base):
             'email': self.email,
             'id': self.id,
             'name': self.name,
+            'token': self.get_token(),
         }
 
     def is_valid(self, password):
