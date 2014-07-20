@@ -77,8 +77,13 @@ class TestCase1(TestCase_):
             })
             self.assertTrue(response.status_code == 200)
             content = loads(response.data)
-            self.assertTrue(content['total'] == 100)
             self.assertTrue(len(content['items']) == 10)
+            self.assertTrue(content['meta']['count'] == 100)
+            self.assertTrue(content['meta']['first'] == 1)
+            self.assertTrue(content['meta']['last'] == 10)
+            self.assertTrue(content['meta']['page'] == 1)
+            self.assertTrue(content['meta']['pages_1'] == 10)
+            self.assertTrue(content['meta']['pages_2'] == [1, 2, 3])
 
     def test_4(self):
         with application.test_client() as client:
@@ -91,8 +96,13 @@ class TestCase1(TestCase_):
             })
             self.assertTrue(response.status_code == 200)
             content = loads(response.data)
-            self.assertTrue(content['total'] == 7)
             self.assertTrue(len(content['items']) == 7)
+            self.assertTrue(content['meta']['count'] == 7)
+            self.assertTrue(content['meta']['first'] == 1)
+            self.assertTrue(content['meta']['last'] == 7)
+            self.assertTrue(content['meta']['page'] == 1)
+            self.assertTrue(content['meta']['pages_1'] == 1)
+            self.assertTrue(content['meta']['pages_2'] == [1])
 
     def test_5(self):
         with application.test_client() as client:

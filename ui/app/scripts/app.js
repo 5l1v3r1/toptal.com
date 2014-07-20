@@ -17,6 +17,12 @@ angular.module('application', [
     $httpProvider.defaults.headers.post[
         'Content-Type'
     ] = 'application/x-www-form-urlencoded; charset=UTF-8';
+    if (!$httpProvider.defaults.headers.put) {
+        $httpProvider.defaults.headers.put = {};
+    }
+    $httpProvider.defaults.headers.put[
+        'Content-Type'
+    ] = 'application/x-www-form-urlencoded; charset=UTF-8';
     $httpProvider.defaults.transformRequest = function (data) {
         if (data === undefined) {
             return data;
@@ -80,7 +86,14 @@ angular.module('application', [
     RestangularProvider.setBaseUrl(url + '/');
 }).run(function ($cookies, $rootScope, $state) {
     $rootScope.spinner = false;
-    $rootScope.user = JSON.parse($cookies.user || 'null');
+    $rootScope.user = null;
+    try {
+        $rootScope.user = JSON.parse($cookies.user);
+    } catch (e) {
+    }
+
+    $rootScope.distanceUnits = ['kilometers', 'meters', 'feet'];
+    $rootScope.timeUnits = ['hours', 'minutes', 'seconds'];
 
     var stack = {
         'dir1': 'up',
@@ -133,6 +146,19 @@ angular.module('application', [
         }, dictionary));
     };
 
+    $rootScope.getDistance = function (value, unit) {
+        if (unit === 'kilometers') {
+            return value * 1000.00;
+        }
+        if (unit === 'meters') {
+            return value;
+        }
+        if (unit === 'feet') {
+            return value / 0.3048;
+        }
+        return value;
+    };
+
     $rootScope.getHeaders = function () {
         if ($rootScope.user === null) {
             return null;
@@ -140,6 +166,19 @@ angular.module('application', [
         return {
             'Token': $rootScope.user.token
         };
+    };
+
+    $rootScope.getTime = function (value, unit) {
+        if (unit === 'hours') {
+            return value * 60.00 * 60.00;
+        }
+        if (unit === 'minutes') {
+            return value * 60.00;
+        }
+        if (unit === 'seconds') {
+            return value;
+        }
+        return value;
     };
 
     $rootScope.$on('$stateChangeStart', function () {
