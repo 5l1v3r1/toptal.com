@@ -10,7 +10,11 @@ describe('Controller: DashboardCtrl', function () {
             $scope: scope
         });
     }));
-    it('1', function () {
-        expect(!!DashboardCtrl).toBe(true);
+    it('should exist', function () {
+        expect(!!DashboardCtrl).toBeTruthy();
+    });
+    it('should be initialized', function () {
+        expect(scope.spinner).toBeTruthy();
+        expect(scope.data).toEqual({});
     });
 });

@@ -13,7 +13,13 @@ describe('Controller: EntriesEditCtrl', function () {
             }
         });
     }));
-    it('1', function () {
-        expect(!!EntriesEditCtrl).toBe(true);
+    it('should exist', function () {
+        expect(!!EntriesEditCtrl).toBeTruthy();
+    });
+    it('should be initialized', function () {
+        expect(scope.distanceUnit).toEqual(rootScope.distanceUnits[1]);
+        expect(scope.timeUnit).toEqual(rootScope.timeUnits[2]);
+        expect(scope.exception).toEqual('');
+        expect(scope.status).toBeTruthy();
     });
 });

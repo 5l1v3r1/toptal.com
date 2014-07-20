@@ -10,12 +10,12 @@ describe('Controller: NavbarCtrl', function () {
             $scope: scope
         });
     }));
-    it('1', function () {
+    it('should exist', function () {
         if (rootScope.user !== null) {
-            expect(scope.items.length).toBe(4);
+            expect(scope.items.length).toEqual(4);
         }
         if (rootScope.user === null) {
-            expect(scope.items.length).toBe(2);
+            expect(scope.items.length).toEqual(2);
         }
     });
 });

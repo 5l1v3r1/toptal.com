@@ -6,7 +6,7 @@ describe('Service: interceptor', function () {
     beforeEach(inject(function (_interceptor_) {
         interceptor = _interceptor_;
     }));
-    it('1', function () {
-        expect(!!interceptor).toBe(true);
+    it('should exist', function () {
+        expect(!!interceptor).toBeTruthy();
     });
 });

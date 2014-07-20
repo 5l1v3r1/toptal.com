@@ -15,3 +15,7 @@ Notes
     - Firefox
 
 - The input values `distance` and `time` are stored in `meters` and `seconds` respectively (in the database).
+
+- `/api/` contains a comprehensive suite of unit tests.
+
+- `/ui/` contains a far more simpler suite of unit tests. It would be as comprehensive as `/api/` with the addition of integration/E2E tests.

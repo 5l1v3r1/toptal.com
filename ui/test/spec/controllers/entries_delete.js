@@ -13,7 +13,11 @@ describe('Controller: EntriesDeleteCtrl', function () {
             }
         });
     }));
-    it('1', function () {
-        expect(!!EntriesDeleteCtrl).toBe(true);
+    it('should exist', function () {
+        expect(!!EntriesDeleteCtrl).toBeTruthy();
+    });
+    it('should be initialized', function () {
+        expect(scope.exception).toEqual('');
+        expect(scope.status).toBeTruthy();
     });
 });

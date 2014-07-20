@@ -5,7 +5,6 @@ Step 1:
 -------
 
 ```
-:::bash
 $ mkdir spa
 $ cd spa
 $ git clone git@git.toptal.com:Mahendra-Kalkura/mahendra-kalkura.git .
@@ -15,7 +14,6 @@ Step 2:
 -------
 
 ```
-:::bash
 $ cd ui
 $ npm install -g yo
 $ npm install
@@ -26,7 +24,6 @@ How to run?
 ===========
 
 ```
-:::bash
 $ cd ui
 $ grunt serve
 ```
@@ -35,7 +32,6 @@ How to test?
 ============
 
 ```
-:::bash
 $ cd ui
 $ grunt test
 ```
@@ -44,7 +40,6 @@ How to build?
 ============
 
 ```
-:::bash
 $ cd ui
 $ grunt build
 ```

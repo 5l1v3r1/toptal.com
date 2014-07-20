@@ -6,7 +6,7 @@ describe('Service: url', function () {
     beforeEach(inject(function (_url_) {
         url = _url_;
     }));
-    it('1', function () {
-        expect(!!url).toBe(true);
+    it('should exist', function () {
+        expect(!!url).toBeTruthy();
     });
 });

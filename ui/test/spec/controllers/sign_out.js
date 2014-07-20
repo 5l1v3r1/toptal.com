@@ -10,7 +10,7 @@ describe('Controller: SignOutCtrl', function () {
             $scope: scope
         });
     }));
-    it('1', function () {
-        expect(!!SignOutCtrl).toBe(true);
+    it('should exist', function () {
+        expect(!!SignOutCtrl).toBeTruthy();
     });
 });

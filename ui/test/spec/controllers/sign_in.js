@@ -10,7 +10,13 @@ describe('Controller: SignInCtrl', function () {
             $scope: scope
         });
     }));
-    it('1', function () {
-        expect(!!SignInCtrl).toBe(true);
+    it('should exist', function () {
+        expect(!!SignInCtrl).toBeTruthy();
+    });
+    it('should be initialized', function () {
+        expect(scope.email).toEqual('');
+        expect(scope.password).toEqual('');
+        expect(scope.exception).toEqual('');
+        expect(scope.status).toBeTruthy();
     });
 });
