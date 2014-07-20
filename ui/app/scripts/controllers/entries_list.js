@@ -40,9 +40,9 @@ angular.module('application').controller(
         $scope.meta = {};
 
         var refresh = function () {
-            /*jshint camelcase: false */
+            /* jshint camelcase: false */
             $cookies.orderBy = JSON.stringify($scope.orderBy);
-            $cookies.offset = JSON.stringify($scope.filters);
+            $cookies.offset = JSON.stringify($scope.offset);
             $cookies.limit = JSON.stringify($scope.limit);
             $cookies.filters = JSON.stringify($scope.filters);
             $scope.entries = [];
@@ -80,6 +80,7 @@ angular.module('application').controller(
         };
 
         $scope.setOffset = function (offset) {
+            console.log(offset);
             $scope.offset = offset;
             if ($scope.offset < 0) {
                 $scope.offset = 0;

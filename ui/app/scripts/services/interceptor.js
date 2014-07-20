@@ -5,6 +5,10 @@ angular.module('application').service(
         return {
             'request': function (config) {
                 $rootScope.spinner = true;
+                /*
+                 * The following code automatically injects the token into
+                 * authorized requests.
+                 */
                 if ($rootScope.user !== null) {
                     config.headers.Token = $rootScope.user.token;
                 }
@@ -20,6 +24,10 @@ angular.module('application').service(
                 return response || $q.when(response);
             },
             'responseError': function (response) {
+                /*
+                 * As a safety/security measure, any and all requests returning
+                 * a 401 status code result in forced session expiration.
+                 */
                 if (response.status === 401) {
                     $rootScope.notify({
                         text: 'Your session has expired.',

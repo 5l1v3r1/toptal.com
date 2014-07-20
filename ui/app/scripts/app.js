@@ -8,6 +8,7 @@ angular.module('application', [
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};
     }
+    // The following lines prevent IIS from caching needlessly.
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
     $httpProvider.defaults.headers.get.Pragma = 'no-cache';
@@ -23,6 +24,10 @@ angular.module('application', [
     $httpProvider.defaults.headers.put[
         'Content-Type'
     ] = 'application/x-www-form-urlencoded; charset=UTF-8';
+    /*
+     * $http sends JSON by default. We are transforming it into a flatter and
+     * a more traditional payload.
+     */
     $httpProvider.defaults.transformRequest = function (data) {
         if (data === undefined) {
             return data;
@@ -46,6 +51,10 @@ angular.module('application', [
         controller: 'EntriesEditCtrl',
         resolve: {
             entry: function ($http, $rootScope, $state, $stateParams) {
+                /*
+                 * The view in question will not be instantiated until this
+                 * promise is resolved.
+                 */
                 return $http({
                     method: 'GET',
                     url: url + '/entry/' + $stateParams.id
@@ -70,6 +79,10 @@ angular.module('application', [
         controller: 'EntriesDeleteCtrl',
         resolve: {
             entry: function ($http, $rootScope, $state, $stateParams) {
+                /*
+                 * The view in question will not be instantiated until this
+                 * promise is resolved.
+                 */
                 return $http({
                     method: 'GET',
                     url: url + '/entry/' + $stateParams.id

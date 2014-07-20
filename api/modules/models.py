@@ -27,6 +27,7 @@ class user(base):
     def password(self, value):
         self.password_ = hashpw(value.encode('utf-8'), gensalt(10))
 
+    # The token TTL is 86,400 seconds (1 day).
     def get_token(self, expires_in=86400):
         return TimedJSONWebSignatureSerializer(
             current_app.config['SECRET_KEY'], expires_in=expires_in,

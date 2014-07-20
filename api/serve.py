@@ -82,6 +82,7 @@ def verify(function):
             g.user = g.session.query(
                 models.user,
             ).get(token['id'] if 'id' in token else 0)
+            # This implies a token belonging to a user that no longer exists.
             if not g.user:
                 raise BadSignature('BadSignature')
         except BadSignature:
@@ -129,20 +130,20 @@ def index():
 def dashboard():
     date_ = request.args.get('date', '')
     if not date_:
+        '''
+        By default, the dashboard statistics must be limited to the current
+        week.
+        '''
         date_ = date.today().isoformat()
     date_ = datetime.strptime(date_, '%Y-%m-%d').date()
-    query = g.session.query(
+    result = g.session.query(
         func.sum(models.entry.distance).label('total_distance'),
         func.sum(models.entry.time).label('total_time'),
     ).filter(
         models.entry.user==g.user,
-    )
-    if date_:
-        query = query.filter(
-            models.entry.date >= date_ - timedelta(days=6),
-            models.entry.date <= date_,
-        )
-    result = query.first()
+        models.entry.date >= date_ - timedelta(days=6),
+        models.entry.date <= date_,
+    ).first()
     return jsonify({
         'average_speed': float(
             (result.total_distance or 0.00) / (result.total_time or 0.00)
@@ -314,6 +315,11 @@ def sign_up():
             'exception': 'Invalid Parameters',
         }), 400
     if g.session.query(models.user).filter(models.user.email==email).count():
+        '''
+        This implies a duplicate email (an email that has already been
+        registered with us). However, we do not say so as a safety/security
+        measure.
+        '''
         return jsonify({
             'exception': 'Invalid Email',
         }), 400
