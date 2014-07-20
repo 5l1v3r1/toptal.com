@@ -2,6 +2,7 @@
 
 from datetime import date, datetime, timedelta
 from functools import wraps
+from math import ceil
 from os import environ
 from os.path import abspath, dirname, join
 
@@ -181,6 +182,10 @@ def entry_get_1():
         query = query.filter(models.entry.date >= dates_from)
     if dates_to:
         query = query.filter(models.entry.date <= dates_to)
+    count = query.count()
+    first = offset + 1
+    page = (offset / limit) + 1
+    pages_1 = int(ceil(count / float(limit)))
     return jsonify({
         'items': [
             item.get_dictionary()
@@ -189,7 +194,14 @@ def entry_get_1():
                 'direction': order_by_direction,
             }).all()[offset:offset+limit]
         ],
-        'total': query.count(),
+        'meta': {
+            'count': count,
+            'first': first,
+            'last': min(first + limit - 1, count),
+            'page': page,
+            'pages_1': pages_1,
+            'pages_2': range(max(page - 2, 1), min(page + 2, pages_1) + 1),
+        },
     }), 200
 
 

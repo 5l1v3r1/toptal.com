@@ -136,6 +136,10 @@ pre {
     margin-left: 17px;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 .container {
     background-color: #ffffff;
     border-radius: 10px;
@@ -150,9 +154,28 @@ pre {
     margin-bottom: 20px;
 }
 
+.form-horizontal .form-group .control-label {
+    font-weight: normal;
+    padding-right: 0;
+}
+
 .page-header {
     margin-top: 0;
     padding-bottom: 0;
+}
+
+.pagination_ {
+    line-height: 34px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.pagination_ .pagination {
+    margin-top: 0;
+    vertical-align: top;
+}
+
+.pagination_ .pull-right .pagination {
+    margin-left: 10px;
 }
 
 .narrow {

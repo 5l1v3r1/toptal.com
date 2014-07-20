@@ -1,9 +1,148 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="page-header">
+            <a class="btn btn-success pull-right" ng-click="add()">
+                <span class="fa fa-fw fa-plus-circle"></span>
+                Add
+            </a>
             <h1>Entries - List</h1>
         </div>
-        <p class="alert alert-success text-center">...coming soon...</p>
+        <div ng-show="items.length">
+            <table class="table table-bordered table-hover table-striped">
+                <tr>
+                    <th
+                        class="cursor"
+                        ng-click="setOrderBy('date')"
+                        >Date</th>
+                    <th
+                        class="cursor narrow text-right"
+                        ng-click="setOrderBy('distance')"
+                        >Distance</th>
+                    <th
+                        class="cursor narrow text-right"
+                        ng-click="setOrderBy('time')"
+                        >Time</th>
+                    <th class="narrow text-right">Average Speed</th>
+                </tr>
+                <tr ng-repeat="item in items">
+                    <td>{{ item.date }}</td>
+                    <td class="narrow text-right">
+                        {{ item.distance / 1000.00|number:2 }} kilometers
+                    </td>
+                    <td class="narrow text-right">
+                        {{ item.time / (60.00 * 60.00)|number:2 }} hours
+                    </td>
+                    <td class="narrow text-right">
+                        {{ (item.distance / item.time) * 3.60|number:2 }}
+                        kilometers/hour
+                    </td>
+                </tr>
+            </table>
+            <div class="pagination_">
+                <span class="pull-left">
+                    <ul class="pagination">
+                        <li>
+                            <a ng-click="setOffset(0)">
+                                <span>&laquo;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="setOffset(offset - limit)">
+                                <span>&lt;</span>
+                            </a>
+                        </li>
+                        <li
+                            class="{{ meta.page == p && 'active' || '' }}"
+                            ng-repeat="p in meta.pages_2"
+                            >
+                            <a ng-click="setOffset((p - 1) * limit)">
+                                <span>{{ p|number:0 }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="setOffset(offset + limit)">
+                                <span>&gt;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="setOffset((meta.pages_1 - 1) * limit)">
+                                <span>&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </span>
+                <span class="pull-right">
+                    Per Page
+                    <ul class="pagination">
+                        <li
+                            class="{{ limit == l && 'active' || '' }}"
+                            ng-repeat="l in limits"
+                            >
+                            <a ng-click="setLimit(l)">
+                                <span>{{ l|number:0 }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </span>
+                Showing {{ meta.first }} to {{ meta.last }} of {{ meta.count }}
+                items
+            </div>
+        </div>
+        <div ng-show="!items.length">
+            <p class="text-center" ng-show="spinner">
+                <i class="fa fa-cog fa-spin"></i>
+            </p>
+            <div class="alert alert-danger" ng-hide="spinner">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+                There are no entries in the database.
+            </div>
+        </div>
+        <hr>
+        <div class="page-header">
+            <h1>Filters</h1>
+        </div>
+        <form class="form-horizontal" method="post">
+            <div class="form-group">
+                <label
+                    class="col-md-2 col-lg-2 control-label"
+                    for="dates_from"
+                    >From</label>
+                <div class="col-md-10 col-lg-10">
+                    <input
+                        class="col-md-10 col-lg-10 datetimepicker form-control"
+                        id="dates_from"
+                        ng-model="filters.dates.from"
+                        type="text"
+                        >
+                </div>
+            </div>
+            <div class="form-group">
+                <label
+                    class="col-md-2 col-lg-2 control-label"
+                    for="dates_to"
+                    >To</label>
+                <div class="col-md-10 col-lg-10">
+                    <input
+                        class="col-md-10 col-lg-10 datetimepicker form-control"
+                        id="dates_to"
+                        ng-model="filters.dates.to"
+                        type="text"
+                        >
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10">
+                    <button
+                        class="btn btn-success"
+                        ng-click="setFilters()"
+                        type="button"
+                        >
+                        <i class="fa fa-fw fa-dot-circle-o"></i>
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -4,16 +4,6 @@ angular.module('application').controller(
     'DashboardCtrl', function ($http, $rootScope, $scope, url) {
         $rootScope.verify();
 
-        window.jQuery('#datetimepicker input').datetimepicker({
-            format: 'Y-m-d',
-            inline: true,
-            onSelectDate: function (value) {
-                $scope.process(value.dateFormat('Y-m-d'));
-            },
-            timepicker: false,
-            weeks: true
-        });
-
         $scope.spinner = false;
         $scope.data = {};
 
@@ -37,5 +27,15 @@ angular.module('application').controller(
         };
 
         $scope.process('');
+
+        window.jQuery('#datetimepicker input').datetimepicker({
+            format: 'Y-m-d',
+            inline: true,
+            onSelectDate: function (value) {
+                $scope.process(value.dateFormat('Y-m-d'));
+            },
+            timepicker: false,
+            weeks: true
+        });
     }
 );

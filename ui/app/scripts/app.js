@@ -3,7 +3,7 @@
 angular.module('application', [
     'ngCookies', 'ngSanitize', 'restangular', 'ui.router'
 ]).config(function (
-    $httpProvider, $stateProvider, $urlRouterProvider, RestangularProvider
+    $httpProvider, $stateProvider, $urlRouterProvider, RestangularProvider, url
 ) {
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};
@@ -70,11 +70,14 @@ angular.module('application', [
     RestangularProvider.addResponseInterceptor(
         function (response, operation) {
             if (operation === 'getList') {
-                return response.result;
+                var data = response.items;
+                data.meta = response.meta;
+                return data;
             }
-            return [response.result, response.status];
+            return response;
         }
     );
+    RestangularProvider.setBaseUrl(url + '/');
 }).run(function ($cookies, $rootScope, $state) {
     $rootScope.spinner = false;
     $rootScope.user = JSON.parse($cookies.user || 'null');

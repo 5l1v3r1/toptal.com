@@ -61,9 +61,9 @@ angular.module('application').controller(
         $scope.process = function () {
             $scope.items = getItems();
             window.jQuery.each($scope.items, function (key) {
-                $scope.items[key].class = (
-                    $scope.items[key].states.indexOf($state.current.name) !== -1
-                )? 'active': '';
+                $scope.items[key].class = ($scope.items[key].states.indexOf(
+                    $state.current.name
+                ) !== -1)? 'active': '';
             });
         };
 
