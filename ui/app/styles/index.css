@@ -1,0 +1,162 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 800;
+    src:
+        local('Open Sans'),
+        url('../fonts/PRmiXeptR36kaC0GEAetxkCDe67GEgBv_HnyvHTfdew.woff?')
+        format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src:
+        local('Open Sans'),
+        url('../fonts/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff')
+        format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 700;
+    src:
+        local('Open Sans'),
+        url('../fonts/PRmiXeptR36kaC0GEAetxjqR_3kx9_hJXbbyU8S6IN0.woff')
+        format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src:
+        local('Open Sans'),
+        url('../fonts/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff')
+        format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    src:
+        local('Open Sans'),
+        url('../fonts/PRmiXeptR36kaC0GEAetxn5HxGBcBvicCpTp6spHfNo.woff')
+        format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        local('Open Sans'),
+        url('../fonts/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff')
+        format('woff');
+}
+
+a {
+    cursor: pointer;
+}
+
+body,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+input,
+select {
+    font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    background-image: url(../images/body.png);
+    background-position: center center;
+    background-repeat: repeat;
+    padding: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+ol,
+p,
+pre {
+    margin: 0 0 20px 0;
+}
+
+#datetimepicker {
+    margin-bottom: 17px;
+}
+
+#footer > div > footer {
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+}
+
+#header {
+    margin-bottom: 20px;
+}
+
+#header > div > a {
+    color: #333;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+#header > div > span {
+    line-height: 30px;
+}
+
+#spinner {
+    font-size: 15px;
+    height: 15px;
+    margin-top: 18.5px;
+    margin-right: 18.5px;
+    position: relative;
+    width: 15px;
+    z-index: 100;
+}
+
+.btn + .btn {
+    margin-left: 17px;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 20px 20px 1px 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.page-header {
+    margin-top: 0;
+    padding-bottom: 0;
+}
+
+.narrow {
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1px;
+}

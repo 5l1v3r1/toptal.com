@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="page-header">
+            <h3>Sign In</h3>
+        </div>
+        <p class="alert alert-danger" ng-show="!status">
+            <i class="fa fa-exclamation-triangle"></i>
+            {{ exception }}
+        </p>
+        <form name="form" ng-submit="process()" novalidate>
+            <div
+                class="form-group"
+                ng-class="{'has-error': !status || form.email.$invalid}"
+                >
+                <label for="email">Email</label>
+                <input
+                    autocomplete="off"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    ng-model="email"
+                    required
+                    type="email"
+                >
+            </div>
+            <div
+                class="form-group"
+                ng-class="{'has-error': !status || form.password.$invalid}"
+                >
+                <label for="email">Password</label>
+                <input
+                    autocomplete="off"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    ng-model="password"
+                    required
+                    type="password"
+                    >
+            </div>
+            <div class="form-group">
+                <button
+                    class="btn btn-success"
+                    ng-disabled="form.$invalid"
+                    type="submit"
+                    >
+                    <i class="fa fa-fw fa-dot-circle-o"></i>
+                    Submit
+                </button>
+                <button class="btn btn-danger" type="reset">
+                    <i class="fa fa-fw fa-circle-o"></i>
+                    Reset
+                </button>
+                <a
+                    class="btn btn-warning pull-right"
+                    ng-click="forgotPassword()"
+                    >
+                    <i class="fa fa-fw fa-question-circle"></i>
+                    Forgot Password
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

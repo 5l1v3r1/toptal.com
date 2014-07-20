@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/pnotify/pnotify.core.css" />
+        <link rel="stylesheet" href="bower_components/pnotify/pnotify.buttons.css" />
+        <link rel="stylesheet" href="bower_components/pnotify/pnotify.history.css" />
+        <link rel="stylesheet" href="bower_components/datetimepicker/jquery.datetimepicker.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/index.css -->
+        <link href="styles/index.css" rel="stylesheet">
+        <!-- endbuild -->
+        <meta charset="utf-8">
+        <meta content="" name="description">
+        <meta content="width=device-width" name="viewport">
+        <title>SPA</title>
+    </head>
+    <body ng-app="application">
+        <!--[if lt IE 7]>
+        <p class="browsehappy">
+            You are using an <strong>outdated</strong> browser. Please
+            <a href="http://browsehappy.com/">upgrade your browser</a> to
+            improve your experience.
+        </p>
+        <![endif]-->
+        <div class="container">
+            <div ng-include="'partials/header.html'"></div>
+            <div ng-include="'partials/navbar.html'"></div>
+            <div ui-view></div>
+            <div ng-include="'partials/footer.html'"></div>
+        </div>
+        <!-- build:js(.) scripts/oldieshim.js -->
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <![endif]-->
+        <!-- endbuild -->
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/json3/lib/json3.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+        <script src="bower_components/restangular/dist/restangular.js"></script>
+        <script src="bower_components/pnotify/pnotify.core.js"></script>
+        <script src="bower_components/pnotify/pnotify.buttons.js"></script>
+        <script src="bower_components/pnotify/pnotify.callbacks.js"></script>
+        <script src="bower_components/pnotify/pnotify.confirm.js"></script>
+        <script src="bower_components/pnotify/pnotify.desktop.js"></script>
+        <script src="bower_components/pnotify/pnotify.history.js"></script>
+        <script src="bower_components/pnotify/pnotify.nonblock.js"></script>
+        <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/interceptor.js"></script>
+        <script src="scripts/services/url.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
+        <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/entries_list.js"></script>
+        <script src="scripts/controllers/entries_add.js"></script>
+        <script src="scripts/controllers/entries_edit.js"></script>
+        <script src="scripts/controllers/entries_delete.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/controllers/sign_out.js"></script>
+        <script src="scripts/controllers/sign_in.js"></script>
+        <script src="scripts/controllers/sign_up.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<div id="navbar" class="row">
+    <div class="col-md-12 col-lg-12">
+        <i
+            class="fa fa-circle-o-notch fa-spin pull-right"
+            id="spinner"
+            ng-show="spinner"
+        ></i>
+        <nav class="navbar navbar-default">
+            <ul class="nav navbar-nav" ng-controller="NavbarCtrl">
+                <li class="{{ item.class }}" ng-repeat="item in items">
+                    <a ui-sref="{{ item.state }}">
+                        <i class="fa fa-fw {{ item.icon }}"></i>
+                        {{ rootScope.layout }}
+                        {{ item.name }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
