@@ -191,6 +191,14 @@ input + select {
     margin-left: 10px;
 }
 
+.table td {
+    white-space: nowrap;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
 .table th i {
     margin-top: 2.5px;
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Service: interceptor', function () {
-    beforeEach(module('application'));
     var interceptor;
+    beforeEach(module('application'));
     beforeEach(inject(function (_interceptor_) {
         interceptor = _interceptor_;
     }));

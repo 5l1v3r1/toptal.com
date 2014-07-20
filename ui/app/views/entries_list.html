@@ -14,7 +14,6 @@
                         class="cursor"
                         ng-click="setOrderBy('date')"
                         >
-                        Date
                         <i
                             class="fa fa-fw fa-sort-alpha-asc pull-right"
                             ng-show="orderBy.column == 'date' && orderBy.direction == 'asc'"
@@ -25,12 +24,12 @@
                             ng-show="orderBy.column == 'date' && orderBy.direction == 'desc'"
                             >
                         </i>
+                        Date
                     </th>
                     <th
                         class="cursor narrow text-right"
                         ng-click="setOrderBy('distance')"
                         >
-                        Distance
                         <i
                             class="fa fa-fw fa-sort-numeric-asc pull-right"
                             ng-show="orderBy.column == 'distance' && orderBy.direction == 'asc'"
@@ -41,12 +40,12 @@
                             ng-show="orderBy.column == 'distance' && orderBy.direction == 'desc'"
                             >
                         </i>
+                        Distance
                     </th>
                     <th
                         class="cursor narrow text-right"
                         ng-click="setOrderBy('time')"
                         >
-                        Time
                         <i
                             class="fa fa-fw fa-sort-numeric-asc pull-right"
                             ng-show="orderBy.column == 'time' && orderBy.direction == 'asc'"
@@ -57,6 +56,7 @@
                             ng-show="orderBy.column == 'time' && orderBy.direction == 'desc'"
                             >
                         </i>
+                        Time
                     </th>
                     <th class="narrow text-right">Average Speed</th>
                     <th class="narrow text-center">Actions</th>

@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Controller: ProfileCtrl', function () {
-    beforeEach(module('application'));
     var rootScope, ProfileCtrl, scope;
+    beforeEach(module('application'));
     beforeEach(inject(function ($controller, $rootScope) {
         rootScope = $rootScope;
         scope = $rootScope.$new();

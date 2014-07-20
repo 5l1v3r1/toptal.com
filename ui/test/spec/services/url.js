@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Service: url', function () {
-    beforeEach(module('application'));
     var url;
+    beforeEach(module('application'));
     beforeEach(inject(function (_url_) {
         url = _url_;
     }));

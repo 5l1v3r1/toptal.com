@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Controller: SignOutCtrl', function () {
-    beforeEach(module('application'));
     var rootScope, SignOutCtrl, scope;
+    beforeEach(module('application'));
     beforeEach(inject(function ($controller, $rootScope) {
         rootScope = $rootScope;
         scope = $rootScope.$new();

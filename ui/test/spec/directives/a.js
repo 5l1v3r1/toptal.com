@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Directive: a', function () {
-    beforeEach(module('application'));
     var element, scope;
+    beforeEach(module('application'));
     beforeEach(inject(function ($rootScope) {
         scope = $rootScope.$new();
     }));

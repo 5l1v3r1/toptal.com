@@ -2,15 +2,15 @@
 
 angular.module('application').controller(
     'EntriesEditCtrl',
-    function ($http, $rootScope, $scope, $state, $stateParams, url) {
+    function ($http, $rootScope, $scope, $state, entry, url) {
         $rootScope.verify();
 
-        $scope.id = $stateParams.id;
-        $scope.date = '';
+        $scope.id = entry.id;
+        $scope.date = entry.date;
         $scope.distanceUnit = $rootScope.distanceUnits[1];
-        $scope.distanceValue = '';
+        $scope.distanceValue = entry.distance;
         $scope.timeUnit = $rootScope.timeUnits[2];
-        $scope.timeValue = '';
+        $scope.timeValue = entry.time;
 
         $scope.exception = '';
         $scope.status = true;
@@ -56,30 +56,6 @@ angular.module('application').controller(
                 }
             );
         };
-
-        $http({
-            method: 'GET',
-            url: url + '/entry/' + $scope.id
-        }).then(
-            function (data) {
-                $scope.id = data.data.id;
-                $scope.date = data.data.date;
-                $scope.distanceUnit = $rootScope.distanceUnits[1];
-                $scope.distanceValue = data.data.distance;
-                $scope.timeUnit = $rootScope.timeUnits[2];
-                $scope.timeValue = data.data.time;
-            },
-            function (data) {
-                $scope.exception = 'Unknown Error';
-                if (
-                    typeof(data.data) === 'object' &&
-                    'exception' in data.data
-                ) {
-                    $scope.exception = data.data.exception;
-                }
-                $scope.status = false;
-            }
-        );
 
         window.jQuery('.datetimepicker').datetimepicker({
             closeOnDateSelect: true,

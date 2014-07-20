@@ -44,10 +44,50 @@ angular.module('application', [
         url: '/entries/add'
     }).state('entries_edit', {
         controller: 'EntriesEditCtrl',
+        resolve: {
+            entry: function ($http, $rootScope, $state, $stateParams) {
+                return $http({
+                    method: 'GET',
+                    url: url + '/entry/' + $stateParams.id
+                }).then(
+                    function (data) {
+                        return data.data;
+                    },
+                    function () {
+                        $rootScope.notify({
+                            text: 'Unknown Error',
+                            title: 'Entries - Edit',
+                            type: 'error'
+                        });
+                        $state.go('entries_list');
+                    }
+                );
+            }
+        },
         templateUrl: 'views/entries_edit.html',
         url: '/entries/:id/edit'
     }).state('entries_delete', {
         controller: 'EntriesDeleteCtrl',
+        resolve: {
+            entry: function ($http, $rootScope, $state, $stateParams) {
+                return $http({
+                    method: 'GET',
+                    url: url + '/entry/' + $stateParams.id
+                }).then(
+                    function (data) {
+                        return data.data;
+                    },
+                    function () {
+                        $rootScope.notify({
+                            text: 'Unknown Error',
+                            title: 'Entries - Delete',
+                            type: 'error'
+                        });
+                        $state.go('entries_list');
+                    }
+                );
+            }
+        },
         templateUrl: 'views/entries_delete.html',
         url: '/entries/:id/delete'
     }).state('profile', {

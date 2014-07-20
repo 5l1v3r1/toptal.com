@@ -2,7 +2,7 @@
 
 angular.module('application').controller(
     'EntriesDeleteCtrl',
-    function ($http, $rootScope, $scope, $state, $stateParams, url) {
+    function ($http, $rootScope, $scope, $state, entry, url) {
         $rootScope.verify();
 
         $scope.exception = '';
@@ -13,7 +13,7 @@ angular.module('application').controller(
             $scope.status = true;
             $http({
                 method: 'DELETE',
-                url: url + '/entry/' + $stateParams.id
+                url: url + '/entry/' + entry.id
             }).then(
                 function () {
                     $rootScope.notify({
@@ -40,13 +40,5 @@ angular.module('application').controller(
                 }
             );
         };
-
-        $http({
-            method: 'GET',
-            url: url + '/entry/' + $scope.id
-        }).then(
-            function () {},
-            function () {}
-        );
     }
 );

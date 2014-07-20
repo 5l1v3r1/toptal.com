@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Controller: NavbarCtrl', function () {
-    beforeEach(module('application'));
     var rootScope, NavbarCtrl, scope;
+    beforeEach(module('application'));
     beforeEach(inject(function ($controller, $rootScope) {
         rootScope = $rootScope;
         scope = $rootScope.$new();

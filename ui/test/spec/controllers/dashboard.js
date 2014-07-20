@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Controller: DashboardCtrl', function () {
-    beforeEach(module('application'));
     var rootScope, DashboardCtrl, scope;
+    beforeEach(module('application'));
     beforeEach(inject(function ($controller, $rootScope) {
         rootScope = $rootScope;
         scope = $rootScope.$new();

@@ -1,8 +1,8 @@
 'use strict';
 
 describe('Controller: EntriesAddCtrl', function () {
-    beforeEach(module('application'));
     var rootScope, EntriesAddCtrl, scope;
+    beforeEach(module('application'));
     beforeEach(inject(function ($controller, $rootScope) {
         rootScope = $rootScope;
         scope = $rootScope.$new();
