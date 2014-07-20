@@ -40,6 +40,15 @@ $ cd ui
 $ grunt test
 ```
 
+How to build?
+============
+
+```
+:::bash
+$ cd ui
+$ grunt build
+```
+
 Notes
 =====
 
