@@ -159,6 +159,12 @@ pre {
     padding-right: 0;
 }
 
+.narrow {
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1px;
+}
+
 .page-header {
     margin-top: 0;
     padding-bottom: 0;
@@ -178,8 +184,6 @@ pre {
     margin-left: 10px;
 }
 
-.narrow {
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 1px;
+.table th i {
+    margin-top: 2.5px;
 }

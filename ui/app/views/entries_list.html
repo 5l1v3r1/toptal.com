@@ -13,15 +13,51 @@
                     <th
                         class="cursor"
                         ng-click="setOrderBy('date')"
-                        >Date</th>
+                        >
+                        Date
+                        <i
+                            class="fa fa-fw fa-sort-alpha-asc pull-right"
+                            ng-show="orderBy.column == 'date' && orderBy.direction == 'asc'"
+                            >
+                        </i>
+                        <i
+                            class="fa fa-fw fa-sort-alpha-desc pull-right"
+                            ng-show="orderBy.column == 'date' && orderBy.direction == 'desc'"
+                            >
+                        </i>
+                    </th>
                     <th
                         class="cursor narrow text-right"
                         ng-click="setOrderBy('distance')"
-                        >Distance</th>
+                        >
+                        Distance
+                        <i
+                            class="fa fa-fw fa-sort-numeric-asc pull-right"
+                            ng-show="orderBy.column == 'distance' && orderBy.direction == 'asc'"
+                            >
+                        </i>
+                        <i
+                            class="fa fa-fw fa-sort-numeric-desc pull-right"
+                            ng-show="orderBy.column == 'distance' && orderBy.direction == 'desc'"
+                            >
+                        </i>
+                    </th>
                     <th
                         class="cursor narrow text-right"
                         ng-click="setOrderBy('time')"
-                        >Time</th>
+                        >
+                        Time
+                        <i
+                            class="fa fa-fw fa-sort-numeric-asc pull-right"
+                            ng-show="orderBy.column == 'time' && orderBy.direction == 'asc'"
+                            >
+                        </i>
+                        <i
+                            class="fa fa-fw fa-sort-numeric-desc pull-right"
+                            ng-show="orderBy.column == 'time' && orderBy.direction == 'desc'"
+                            >
+                        </i>
+                    </th>
                     <th class="narrow text-right">Average Speed</th>
                 </tr>
                 <tr ng-repeat="item in items">
