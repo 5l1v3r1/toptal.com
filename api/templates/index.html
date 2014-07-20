@@ -23,7 +23,8 @@
 {
     "email": "...",
     "id": "...",
-    "name": "..."
+    "name": "...",
+    "token": "..." # expires in 24 hours
 }</pre>
                     <p><strong>Example (Failure):</strong></p>
 <pre class="alert alert-danger">$ curl \
@@ -66,6 +67,9 @@
     http://localhost:5000/sign-in</pre>
 <pre class="alert alert-success">200 OK
 {
+    "email": "...",
+    "id": "...",
+    "name": "...",
     "token": "..." # expires in 24 hours
 }</pre>
                     <p><strong>Example (Failure):</strong></p>
@@ -94,40 +98,30 @@
                     </ol>
                     <hr>
                     <div class="page-header">
-                        <h1>Profile</h1>
+                        <h1>Dashboard</h1>
                     </div>
-                    <p><strong>Example (Success):</strong></p>
+                    <p><strong>Example:</strong></p>
 <pre class="alert alert-success">$ curl \
-    -d 'password=...&amp;name=...' \
-    -X 'POST' \
-    http://localhost:5000/profile</pre>
+    -H 'Token: ...' \
+    -X 'GET' \
+    http://localhost:5000/dashboard?date=...</pre>
 <pre class="alert alert-success">200 OK
 {
-    "email": "...",
-    "id": "...",
-    "name": "..."
-}</pre>
-                    <p><strong>Example (Failure):</strong></p>
-<pre class="alert alert-danger">$ curl \
-    -d 'password=&amp;name=' \
-    -X 'POST' \
-    http://localhost:5000/profile</pre>
-<pre class="alert alert-danger">400 Bad Request
-{
-    "exception": "..."
+    "average_speed": "...", # in meters per second
+    "total_distance": "..." # in meters
+    "total_time": "...",     # in seconds
 }</pre>
                     <p><strong>Parameters:</strong></p>
                     <ol>
                         <li>
-                            password
+                            date
                             <ul>
-                                <li>mandatory</li>
-                            </ul>
-                        </li>
-                        <li>
-                            name
-                            <ul>
-                                <li>mandatory</li>
+                                <li>optional</li>
+                                <li>
+                                    format: YYYY-MM-DD
+                                    (report will be limited to a period
+                                    between date - 7 days and date)
+                                </li>
                             </ul>
                         </li>
                     </ol>
@@ -211,6 +205,63 @@
                                 </li>
                                 <li>default: 10</li>
                                 <li>maximum: 50</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+                    <div class="page-header">
+                        <h1>Get Entry</h1>
+                    </div>
+                    <p><strong>Example (Success):</strong></p>
+<pre class="alert alert-success">$ curl \
+    -H 'Token: ...' \
+    -X 'GET' \
+    http://localhost:5000/entry/&lt;id&gt;</pre>
+<pre class="alert alert-success">200 OK
+{
+    "date": "...",
+    "distance": "...", # in meters
+    "id": "...",
+    "time": "..."      # in seconds
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -H 'Token: ...' \
+    -X 'GET' \
+    http://localhost:5000/entry/&lt;id&gt;</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
+}</pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ol>
+                        <li>
+                            date
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: YYYY-MM-DD
+                                    (must be today or older; i.e. you cannot
+                                    add entries in the future)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            distance (in meters)
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid double (will be coerced)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            time (in seconds)
+                            <ul>
+                                <li>mandatory</li>
+                                <li>
+                                    format: a valid double (will be coerced)
+                                </li>
                             </ul>
                         </li>
                     </ol>
@@ -347,7 +398,7 @@
 <pre class="alert alert-danger">$ curl \
     -H 'Token: ...' \
     -X 'DELETE' \
-    http://localhost:5000/entry/</pre>
+    http://localhost:5000/entry/&lt;id&gt;</pre>
 <pre class="alert alert-danger">400 Bad Request
 {
     "exception": "..."
@@ -366,30 +417,41 @@
                     </ol>
                     <hr>
                     <div class="page-header">
-                        <h1>Reports</h1>
+                        <h1>Profile</h1>
                     </div>
-                    <p><strong>Example:</strong></p>
+                    <p><strong>Example (Success):</strong></p>
 <pre class="alert alert-success">$ curl \
-    -H 'Token: ...' \
-    -X 'GET' \
-    http://localhost:5000/report?date=...</pre>
+    -d 'password=...&amp;name=...' \
+    -X 'POST' \
+    http://localhost:5000/profile</pre>
 <pre class="alert alert-success">200 OK
 {
-    "average_speed": "...", # in meters per second
-    "total_distance": "..." # in meters
-    "total_time": "...",     # in seconds
+    "email": "...",
+    "id": "...",
+    "name": "...",
+    "token": "..." # expires in 24 hours
+}</pre>
+                    <p><strong>Example (Failure):</strong></p>
+<pre class="alert alert-danger">$ curl \
+    -d 'password=&amp;name=' \
+    -X 'POST' \
+    http://localhost:5000/profile</pre>
+<pre class="alert alert-danger">400 Bad Request
+{
+    "exception": "..."
 }</pre>
                     <p><strong>Parameters:</strong></p>
                     <ol>
                         <li>
-                            date
+                            password
                             <ul>
-                                <li>optional</li>
-                                <li>
-                                    format: YYYY-MM-DD
-                                    (report will be limited to a period
-                                    between date and date + 7 days)
-                                </li>
+                                <li>mandatory</li>
+                            </ul>
+                        </li>
+                        <li>
+                            name
+                            <ul>
+                                <li>mandatory</li>
                             </ul>
                         </li>
                     </ol>

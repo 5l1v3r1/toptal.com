@@ -103,16 +103,14 @@ def before_request():
 @application.after_request
 def after_request(response):
     response.headers['Access-Control-Allow-Headers'] = ', '.join([
+        'Cache-Control',
         'Content-Type',
+        'If-Modified-Since',
+        'Pragma',
         'Token',
     ])
     response.headers['Access-Control-Allow-Methods'] = ', '.join([
-        'DELETE',
-        'GET',
-        'HEAD',
-        'OPTIONS',
-        'POST',
-        'PUT',
+        'DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT',
     ])
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Max-Age'] = '86400'
