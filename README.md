@@ -1,9 +1,17 @@
+Preface
+=======
+
+Please see `/api/README.md` and `/ui/README.md` for more details.
+
 Notes
 =====
 
-1. The entire project (both sections, /api/ and /ui/) is sparsely commented due to time constraints.
+- The entire project (both sections, `/api/` and `/ui/`) is sparsely commented due to time constraints.
 
-2. The UI has been tested in the following browsers:
+- The standard features of a registration system such as **Forgot Password** have been omitted due to time constraints.
 
-- Chrome
-- Firefox
+- The UI has been tested in the following browsers:
+    - Chrome
+    - Firefox
+
+- The input values `distance` and `time` are stored in `meters` and `seconds` respectively (in the database).
