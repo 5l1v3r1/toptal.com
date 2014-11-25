@@ -5,9 +5,9 @@ Step 1:
 -------
 
 ```
-$ mkdir spa
-$ cd spa
-$ git clone git@git.toptal.com:Mahendra-Kalkura/mahendra-kalkura.git .
+$ mkdir toptal.com
+$ cd toptal.com
+$ git clone git@github.com:mahendrakalkura/toptal.com.git .
 ```
 
 Step 2:
