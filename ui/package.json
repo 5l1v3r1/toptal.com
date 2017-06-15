@@ -1,7 +1,11 @@
 {
   "name": "ui",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-pngquant": "^5.0.1",
+    "karma": "^1.7.0"
+  },
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
