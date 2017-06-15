@@ -7,5 +7,5 @@ PROPAGATE_EXCEPTIONS = False
 
 # Flask-SQLAlchemy
 
-SQLALCHEMY_URL = 'mysql+mysqldb://username:password@hostname/database'
+SQLALCHEMY_URL = 'mysql+pymysql://username:password@hostname/database'
 SQLALCHEMY_ECHO = False

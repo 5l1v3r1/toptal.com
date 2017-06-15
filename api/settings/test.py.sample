@@ -6,4 +6,4 @@ TESTING = True
 
 # Flask-SQLAlchemy
 
-SQLALCHEMY_URL = 'mysql+mysqldb://username:password@hostname/database_'
+SQLALCHEMY_URL = 'mysql+pymysql://username:password@hostname/database_'
