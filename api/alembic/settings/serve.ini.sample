@@ -2,7 +2,7 @@
 file_template = %%(year)d-%%(month).2d-%%(day)2d %%(hour).2d:%%(minute).2d:%%(second).2d
 revision_environment = false
 script_location = alembic
-sqlalchemy.url = mysql+mysqldb://username:password@hostname/database
+sqlalchemy.url = mysql+pymysql://username:password@hostname/database
 truncate_slug_length = 255
 
 [formatters]
